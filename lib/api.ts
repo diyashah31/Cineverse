@@ -55,10 +55,10 @@ export async function getGenres(): Promise<any[]> {
 export async function getSources(): Promise<any[]> {
   try {
     const data = await fetchFromWatchmode<ApiSourcesResponse>("/sources/");
-    return data.sources || [];
+    return data.sources && data.sources.length > 0 ? data.sources : DEFAULT_SOURCES;
   } catch (error) {
     console.error("Failed to fetch sources:", error);
-    return [];
+    return DEFAULT_SOURCES;
   }
 }
 
@@ -143,3 +143,13 @@ export const PLATFORM_MAP: Record<string, number> = {
   hbo: 384,
   apple: 371,
 };
+
+// Fallback default sources used when Watchmode API is unavailable or returns no data
+export const DEFAULT_SOURCES = [
+  { source_id: PLATFORM_MAP.netflix, name: "Netflix" },
+  { source_id: PLATFORM_MAP["prime-video"], name: "Prime Video" },
+  { source_id: PLATFORM_MAP.hulu, name: "Hulu" },
+  { source_id: PLATFORM_MAP.disney, name: "Disney+" },
+  { source_id: PLATFORM_MAP.hbo, name: "HBO" },
+  { source_id: PLATFORM_MAP.apple, name: "Apple TV+" },
+];

@@ -13,7 +13,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        handwritten: ['"Patrick Hand"', "cursive"],
+        // Use normal sans stack for handwritten to show regular text
+        handwritten: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
       },
       borderWidth: {
         3: "3px",

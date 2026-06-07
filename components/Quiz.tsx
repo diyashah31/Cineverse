@@ -8,7 +8,7 @@ import MoodStep from "./steps/MoodStep";
 import PlatformsStep from "./steps/PlatformsStep";
 import TimeStep from "./steps/TimeStep";
 import { QuizState } from "@/lib/types";
-import { getSources } from "@/lib/api";
+// Use client-side fetch to a small server route that exposes default sources
 
 const initialState: QuizState = {
   genre: null,
@@ -29,10 +29,20 @@ export default function Quiz({ onComplete }: QuizProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Load platforms on mount
+    // Load platforms on mount via client fetch to our server route
     const loadSources = async () => {
-      const data = await getSources();
-      setSources(data);
+      try {
+        const res = await fetch("/api/sources");
+        if (res.ok) {
+          const data = await res.json();
+          setSources(data);
+        } else {
+          setSources([]);
+        }
+      } catch (err) {
+        console.error("Failed to load sources:", err);
+        setSources([]);
+      }
     };
     loadSources();
   }, []);

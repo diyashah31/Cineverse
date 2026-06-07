@@ -89,7 +89,7 @@ export function ProgressStepper({
                     {stepNum}
                   </span>
                 )}
-              </motion.div>
+              </div>
 
               {/* Scribble fill for completed steps */}
               {isCompleted && (

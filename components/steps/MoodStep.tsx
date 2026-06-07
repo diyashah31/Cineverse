@@ -6,8 +6,6 @@ import {
   CalmIcon,
   ChillIcon,
   MindBlownIcon,
-  CoolIcon,
-  SadIcon,
 } from "../DoodleIcons";
 import { getMoodDescription } from "@/lib/utils";
 
