@@ -1,0 +1,13 @@
+{
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm ci",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "env": {
+    "WATCHMODE_API_KEY": {
+      "description": "Watchmode API Key from https://api.watchmode.com/",
+      "required": true
+    }
+  }
+}
