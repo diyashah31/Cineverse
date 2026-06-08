@@ -1,6 +1,0 @@
-{
-  "key": "WATCHMODE_API_KEY",
-  "value": "jBN0XIZe32R5UsFJyGaIrJJBBKmFnIIRVQX56GRT",
-  "target": ["production","preview","development"],
-  "type": "encrypted"
-}
