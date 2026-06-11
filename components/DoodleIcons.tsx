@@ -2,7 +2,7 @@
 
 export function ActionIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <circle cx="20" cy="12" r="8" />
       <path d="M 8 22 L 12 32 M 20 28 L 20 38 M 32 22 L 28 32" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
@@ -19,7 +19,7 @@ export function RomanceIcon() {
 
 export function HorrorIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <circle cx="12" cy="14" r="3" />
       <circle cx="28" cy="14" r="3" />
       <ellipse cx="20" cy="24" rx="4" ry="6" />
@@ -31,7 +31,7 @@ export function HorrorIcon() {
 
 export function SciFiIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <path d="M 20 4 L 28 16 L 24 24 L 16 24 L 12 16 Z" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="20" cy="20" r="6" />
       <path d="M 4 30 L 36 30" strokeLinecap="round" />
@@ -43,7 +43,7 @@ export function SciFiIcon() {
 
 export function ComedyIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <circle cx="20" cy="20" r="16" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="14" cy="16" r="2" fill="currentColor" />
       <circle cx="26" cy="16" r="2" fill="currentColor" />
@@ -54,7 +54,7 @@ export function ComedyIcon() {
 
 export function DramaIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <path d="M 8 8 L 12 4 L 16 8 L 24 8 L 28 4 L 32 8 L 32 32 L 8 32 Z" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="14" cy="18" r="2" fill="currentColor" />
       <circle cx="26" cy="18" r="2" fill="currentColor" />
@@ -65,7 +65,7 @@ export function DramaIcon() {
 
 export function CalmIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <circle cx="20" cy="20" r="14" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="15" cy="16" r="1.5" fill="currentColor" />
       <circle cx="25" cy="16" r="1.5" fill="currentColor" />
@@ -77,7 +77,7 @@ export function CalmIcon() {
 
 export function HappyIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <circle cx="20" cy="20" r="14" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="15" cy="17" r="2" fill="currentColor" />
       <circle cx="25" cy="17" r="2" fill="currentColor" />
@@ -88,7 +88,7 @@ export function HappyIcon() {
 
 export function MindBlownIcon() {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-2">
+    <svg width="40" height="40" viewBox="0 0 40 40" className="fill-none stroke-current stroke-1">
       <circle cx="20" cy="20" r="12" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="16" cy="16" r="2" fill="currentColor" />
       <circle cx="24" cy="16" r="2" fill="currentColor" />
