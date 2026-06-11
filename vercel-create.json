@@ -1,5 +1,0 @@
-{
-  "name": "cineverse",
-  "framework": "nextjs",
-  "gitRepository": { "type": "github", "repo": "diyashah31/Cineverse", "org": "diyashah31", "branch": "main" }
-}
