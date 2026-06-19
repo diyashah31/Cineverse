@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeStream</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Poppins', system-ui, sans-serif;
+            background-image:
+                url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22500%22%20height%3D%22500%22%20viewBox%3D%220%200%20500%20500%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.055%22%3E%20%3C%21--%20Clapperboard%20--%3E%20%3Cpath%20d%3D%22M38%2C58%20L100%2C58%20L96%2C38%20L34%2C38%20Z%22/%3E%20%3Cline%20x1%3D%2244%22%20y1%3D%2238%22%20x2%3D%2250%22%20y2%3D%2258%22/%3E%20%3Cline%20x1%3D%2256%22%20y1%3D%2238%22%20x2%3D%2262%22%20y2%3D%2258%22/%3E%20%3Cline%20x1%3D%2268%22%20y1%3D%2238%22%20x2%3D%2274%22%20y2%3D%2258%22/%3E%20%3Cline%20x1%3D%2280%22%20y1%3D%2238%22%20x2%3D%2286%22%20y2%3D%2258%22/%3E%20%3Crect%20x%3D%2234%22%20y%3D%2258%22%20width%3D%2266%22%20height%3D%2248%22%20rx%3D%223%22/%3E%20%3Cline%20x1%3D%2234%22%20y1%3D%2276%22%20x2%3D%22100%22%20y2%3D%2276%22/%3E%20%3C%21--%20Film%20reel%20--%3E%20%3Ccircle%20cx%3D%22270%22%20cy%3D%22100%22%20r%3D%2236%22/%3E%20%3Ccircle%20cx%3D%22270%22%20cy%3D%22100%22%20r%3D%226%22/%3E%20%3Ccircle%20cx%3D%22270%22%20cy%3D%2274%22%20r%3D%227%22/%3E%20%3Ccircle%20cx%3D%22294%22%20cy%3D%2290%22%20r%3D%227%22/%3E%20%3Ccircle%20cx%3D%22294%22%20cy%3D%22114%22%20r%3D%227%22/%3E%20%3Ccircle%20cx%3D%22270%22%20cy%3D%22128%22%20r%3D%227%22/%3E%20%3Ccircle%20cx%3D%22246%22%20cy%3D%22114%22%20r%3D%227%22/%3E%20%3Ccircle%20cx%3D%22246%22%20cy%3D%2290%22%20r%3D%227%22/%3E%20%3C%21--%20Headphones%20--%3E%20%3Cpath%20d%3D%22M70%2C200%20a42%2C42%200%200%201%2084%2C0%22%20stroke-width%3D%222%22/%3E%20%3Crect%20x%3D%2262%22%20y%3D%22200%22%20width%3D%2216%22%20height%3D%2228%22%20rx%3D%226%22/%3E%20%3Crect%20x%3D%22146%22%20y%3D%22200%22%20width%3D%2216%22%20height%3D%2228%22%20rx%3D%226%22/%3E%20%3C%21--%20Movie%20ticket%20--%3E%20%3Crect%20x%3D%2236%22%20y%3D%22270%22%20width%3D%22110%22%20height%3D%2256%22%20rx%3D%228%22/%3E%20%3Cline%20x1%3D%22100%22%20y1%3D%22270%22%20x2%3D%22100%22%20y2%3D%22326%22%20stroke-dasharray%3D%225%206%22/%3E%20%3Cpath%20d%3D%22M118%20290%20l3%206%207%201%20-5%205%201%207%20-6%20-3%20-6%203%201%20-7%20-5%20-5%207%20-1%20z%22/%3E%20%3C%21--%20Popcorn%20--%3E%20%3Cpath%20d%3D%22M312%2C330%20l8%2C62%20h56%20l8%2C-62%20z%22/%3E%20%3Cline%20x1%3D%22324%22%20y1%3D%22330%22%20x2%3D%22330%22%20y2%3D%22392%22/%3E%20%3Cline%20x1%3D%22346%22%20y1%3D%22330%22%20x2%3D%22346%22%20y2%3D%22392%22/%3E%20%3Cline%20x1%3D%22368%22%20y1%3D%22330%22%20x2%3D%22362%22%20y2%3D%22392%22/%3E%20%3Ccircle%20cx%3D%22320%22%20cy%3D%22320%22%20r%3D%229%22/%3E%20%3Ccircle%20cx%3D%22338%22%20cy%3D%22312%22%20r%3D%2210%22/%3E%20%3Ccircle%20cx%3D%22357%22%20cy%3D%22312%22%20r%3D%2210%22/%3E%20%3Ccircle%20cx%3D%22374%22%20cy%3D%22320%22%20r%3D%229%22/%3E%20%3C%21--%20Vintage%20camera%20--%3E%20%3Crect%20x%3D%22380%22%20y%3D%22380%22%20width%3D%2274%22%20height%3D%2248%22%20rx%3D%224%22/%3E%20%3Crect%20x%3D%22396%22%20y%3D%22366%22%20width%3D%2228%22%20height%3D%2216%22%20rx%3D%222%22/%3E%20%3Ccircle%20cx%3D%22417%22%20cy%3D%22404%22%20r%3D%2215%22/%3E%20%3Ccircle%20cx%3D%22417%22%20cy%3D%22404%22%20r%3D%226%22/%3E%20%3Crect%20x%3D%22440%22%20y%3D%22392%22%20width%3D%2210%22%20height%3D%228%22%20rx%3D%221%22/%3E%20%3C%21--%20Play%20button%20--%3E%20%3Ccircle%20cx%3D%22170%22%20cy%3D%22420%22%20r%3D%2230%22/%3E%20%3Cpath%20d%3D%22M159%2C406%20l22%2C14%20-22%2C14%20z%22/%3E%20%3C%21--%20Vertical%20film%20strip%20--%3E%20%3Crect%20x%3D%22455%22%20y%3D%22150%22%20width%3D%2234%22%20height%3D%22170%22%20rx%3D%222%22/%3E%20%3Crect%20x%3D%22461%22%20y%3D%22162%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22476%22%20y%3D%22162%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22461%22%20y%3D%22186%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22476%22%20y%3D%22186%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22461%22%20y%3D%22210%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22476%22%20y%3D%22210%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22461%22%20y%3D%22234%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22476%22%20y%3D%22234%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22461%22%20y%3D%22258%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22476%22%20y%3D%22258%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22461%22%20y%3D%22282%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22476%22%20y%3D%22282%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22461%22%20y%3D%22298%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3Crect%20x%3D%22476%22%20y%3D%22298%22%20width%3D%227%22%20height%3D%227%22/%3E%20%3C%21--%20Stars%20scattered%20--%3E%20%3Cpath%20d%3D%22M430%2045%20l4%209%2010%201%20-7%207%202%2010%20-9%20-5%20-9%205%202%20-10%20-7%20-7%2010%20-1%20z%22/%3E%20%3Cpath%20d%3D%22M200%2015%20l3%207%207%201%20-5%205%201%207%20-6%20-3%20-6%203%201%20-7%20-5%20-5%207%20-1%20z%22/%3E%20%3Cpath%20d%3D%22M16%20220%20l3%207%207%201%20-5%205%201%207%20-6%20-3%20-6%203%201%20-7%20-5%20-5%207%20-1%20z%22/%3E%20%3Cpath%20d%3D%22M250%20460%20l3%207%207%201%20-5%205%201%207%20-6%20-3%20-6%203%201%20-7%20-5%20-5%207%20-1%20z%22/%3E%20%3Cpath%20d%3D%22M420%20460%20l3%207%207%201%20-5%205%201%207%20-6%20-3%20-6%203%201%20-7%20-5%20-5%207%20-1%20z%22/%3E%20%3C%21--%20Megaphone%20--%3E%20%3Cpath%20d%3D%22M40%2C440%20l38%2C-18%20v54%20l-38%2C-18%20z%22/%3E%20%3Cpath%20d%3D%22M78%2C422%20a22%2C22%200%200%201%200%2C42%22/%3E%20%3Cline%20x1%3D%2230%22%20y1%3D%22450%22%20x2%3D%2230%22%20y2%3D%22464%22/%3E%20%3C/g%3E%20%3C/svg%3E"),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 360px 360px, 50px 50px, 50px 50px;
+            background-repeat: repeat, repeat, repeat;
+        }
+
+.handwritten {
+   font-family: 'Poppins', sans-serif;
+   font-weight: 600;
+}
+
+        .doodle-border {
+            border: 2.5px solid #ffffff;
+            border-radius: 3px;
+            filter: url(#doodle-wobble);
+            position: relative;
+        }
+
+        .doodle-border::before,
+        .doodle-border::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #ffffff;
+            pointer-events: none;
+        }
+
+        .doodle-border::before {
+            top: -6px;
+            left: -6px;
+            border-right: none;
+            border-bottom: none;
+            transform: rotate(-4deg);
+        }
+
+        .doodle-border::after {
+            bottom: -6px;
+            right: -6px;
+            border-left: none;
+            border-top: none;
+            transform: rotate(-4deg);
+        }
+
+        .doodle-card {
+            border: 2.5px solid #ffffff;
+            border-radius: 2px 14px 2px 14px / 14px 2px 14px 2px;
+            filter: url(#doodle-wobble);
+        }
+
+        .chip,
+        .platform-card {
+            transition: all 0.25s ease;
+        }
+
+        .active {
+            background: #ffffff !important;
+            color: #000000 !important;
+            transform: scale(1.05) rotate(1deg);
+        }
+
+        .card:hover {
+            transform: rotate(1.5deg) scale(1.03);
+        }
+
+        .pen-cursor {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2'%3E%3Cpath d='M17 3L21 7L7 21L3 17L17 3Z'/%3E%3C/svg%3E") 4 20, auto;
+        }
+    </style>
+</head>
+
+<body class="pen-cursor min-h-screen pb-24">
+
+    <svg width="0" height="0" style="position:absolute">
+        <filter id="doodle-wobble">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015 0.03" numOctaves="2" result="noise" seed="3"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5"/>
+        </filter>
+    </svg>
+
+    <header class="border-b border-white/30 py-5 sticky top-0 bg-black z-50">
+        <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-4xl">🎬</span>
+                <h1 class="text-4xl handwritten tracking-tighter">VibeStream</h1>
+            </div>
+            <button onclick="resetApp()"
+                class="border border-white px-6 py-3 hover:bg-white hover:text-black transition-all handwritten">New
+                Vibe ✏️</button>
+        </div>
+    </header>
+
+    <div class="max-w-5xl mx-auto px-6 pt-10">
+        <!-- Progress -->
+        <div class="flex justify-between mb-12 relative">
+            <div class="absolute top-5 left-6 right-6 h-[2px] bg-white/20"></div>
+            <div onclick="goToStep(1)"
+                class="step w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-xl cursor-pointer bg-black z-10">
+                1</div>
+            <div onclick="goToStep(2)"
+                class="step w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-xl cursor-pointer bg-black z-10">
+                2</div>
+            <div onclick="goToStep(3)"
+                class="step w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-xl cursor-pointer bg-black z-10">
+                3</div>
+        </div>
+
+        <!-- STEP 1: Genre -->
+        <div id="step-1" class="step-content">
+            <h2 class="text-5xl handwritten mb-10">What's the vibe genre?</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="genre-chips"></div>
+        </div>
+
+
+        <!-- STEP 3: Platforms + Hollywood/Bollywood -->
+        <div id="step-2" class="step-content hidden">
+            <h2 class="text-5xl handwritten mb-8">Where do you watch?</h2>
+
+            <!-- Hollywood / Bollywood Filter -->
+            <div class="mb-8">
+                <p class="text-lg mb-4 handwritten">Region / Industry</p>
+                <div class="flex gap-4">
+                    <div onclick="toggleRegion('hollywood', this)" id="region-hollywood"
+                        class="chip doodle-border px-8 py-4 cursor-pointer text-xl">🌍 Hollywood</div>
+                    <div onclick="toggleRegion('bollywood', this)" id="region-bollywood"
+                        class="chip doodle-border px-8 py-4 cursor-pointer text-xl">🇮🇳 Bollywood</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="platform-grid"></div>
+        </div>
+
+        <!-- STEP 4: Era -->
+        <div id="step-3" class="step-content hidden">
+            <h2 class="text-5xl handwritten mb-10">Which era?</h2>
+            <div class="mt-12 px-4">
+                <input type="range" id="year-slider" min="1950" max="2026" value="2018"
+                    class="w-full accent-white bg-white/10 h-1 rounded">
+                <div class="flex justify-between text-sm mt-4">
+                    <span>1950</span>
+                    <span id="selected-year" class="handwritten text-3xl">2018</span>
+                    <span>2026</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="results-screen" class="step-content hidden">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-5xl handwritten">Your Vibe Recs</h2>
+                <button onclick="resetApp()" class="border border-white px-6 py-3 hover:bg-white hover:text-black">Remix
+                    ✏️</button>
+            </div>
+
+            <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="flex justify-center gap-4 mt-12"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/95 hidden flex items-center justify-center z-[100] p-4">
+        <div id="modal-content" class="max-w-2xl w-full doodle-border bg-black p-8 max-h-[90vh] overflow-auto"></div>
+    </div>
+    <!-- Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 bg-black border-t border-white/20 p-4 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between">
+            <button onclick="prevStep()"
+                class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-black transition">
+                ← Back
+            </button>
+
+            <button onclick="nextStep()"
+                class="border border-white px-6 py-3 rounded-lg bg-white text-black hover:scale-105 transition">
+                Next →
+            </button>
+        </div>
+    </div>
+    <script>
+        const API_KEY = "jBN0XIZe32R5UsFJyGaIrJJBBKmFnIIRVQX56GRT"; // ← Replace with your key
+        const API_BASE = "https://api.watchmode.com/v1";
+
+        let currentStep = 1;
+        let currentPage = 1;
+        const PAGE_SIZE = 9;
+
+        let selections = { genres: [], platforms: [], region: null, year: 2018 };
+
+        const allGenres = [
+            { id: 1, name: "Action" }, { id: 39, name: "Action & Adventure" },
+            { id: 30, name: "Adult" }, { id: 2, name: "Adventure" },
+            { id: 3, name: "Animation" }, { id: 33, name: "Anime" },
+            { id: 31, name: "Biography" }, { id: 4, name: "Comedy" },
+            { id: 5, name: "Crime" }, { id: 6, name: "Documentary" },
+            { id: 7, name: "Drama" }, { id: 8, name: "Family" },
+            { id: 9, name: "Fantasy" }, { id: 34, name: "Food" },
+            { id: 28, name: "Game Show" }, { id: 10, name: "History" },
+            { id: 11, name: "Horror" }, { id: 21, name: "Kids" },
+            { id: 12, name: "Music" }, { id: 32, name: "Musical" },
+            { id: 13, name: "Mystery" }, { id: 36, name: "Nature" },
+            { id: 22, name: "News" }, { id: 23, name: "Reality" },
+            { id: 14, name: "Romance" }, { id: 40, name: "Sci‑Fi & Fantasy" },
+            { id: 15, name: "Science Fiction" }, { id: 25, name: "Soap" },
+            { id: 29, name: "Sports" }, { id: 37, name: "Supernatural" },
+            { id: 26, name: "Talk" }, { id: 17, name: "Thriller" },
+            { id: 35, name: "Travel" }, { id: 38, name: "TV Movie" },
+            { id: 18, name: "War" }, { id: 41, name: "War & Politics" },
+            { id: 19, name: "Western" }
+        ];
+
+        const allPlatforms = [
+            { id: 203, name: "Netflix" },
+            { id: 157, name: "Prime Video" },
+            { id: 387, name: "Disney+ Hotstar" },
+            { id: 371, name: "JioCinema" },
+            { id: 444, name: "Sony LIV" },
+            { id: 232, name: "ZEE5" },
+            { id: 349, name: "Apple TV+" },
+            { id: 445, name: "Discovery+" },
+            { id: 63, name: "Hulu" },
+            { id: 80, name: "Max" },
+            { id: 26, name: "Peacock" }
+        ];
+
+
+
+        function renderGenres() {
+            const container = document.getElementById('genre-chips');
+            container.innerHTML = allGenres.map(g => `
+                <div onclick="toggleGenre(${g.id}, this)" class="chip doodle-border p-6 text-center cursor-pointer hover:rotate-2">
+                    <div class="handwritten text-xl">${g.name}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderPlatforms() {
+            const container = document.getElementById('platform-grid');
+            container.innerHTML = allPlatforms.map(p => `
+                <div onclick="togglePlatform(${p.id}, this)" class="platform-card chip doodle-border p-6 text-center cursor-pointer hover:rotate-2">
+                    <div class="handwritten text-xl">${p.name}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleGenre(id, el) {
+            el.classList.toggle('active');
+            if (selections.genres.includes(id)) selections.genres = selections.genres.filter(g => g !== id);
+            else selections.genres.push(id);
+        }
+
+        function togglePlatform(id, el) {
+            el.classList.toggle('active');
+            if (selections.platforms.includes(id)) selections.platforms = selections.platforms.filter(p => p !== id);
+            else selections.platforms.push(id);
+        }
+
+        function toggleRegion(type, el) {
+            document.querySelectorAll('#step-2 .chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            selections.region = type;
+        }
+
+        document.getElementById('year-slider').addEventListener('input', (e) => {
+            selections.year = e.target.value;
+            document.getElementById('selected-year').textContent = e.target.value;
+        });
+
+        async function fetchRecommendations(page = 1) {
+            currentPage = page;
+            const container = document.getElementById('results-grid');
+            container.innerHTML = `<div class="col-span-full text-center py-20 handwritten text-3xl">sketching your recs...</div>`;
+
+            try {
+                const params = new URLSearchParams({
+                    sourceIds: selections.platforms.length ? selections.platforms.join(',') : '203',
+                    types: 'movie,tv_series',
+                    limit: PAGE_SIZE,
+                    sort_by: 'relevance_desc',
+                    page: page
+                });
+
+                if (selections.genres.length) params.append('genres', selections.genres.join(','));
+
+                const startYear = selections.year;
+                params.append('releaseDateStart', `${startYear}0101`);
+                params.append('releaseDateEnd', `${parseInt(startYear) + 6}1231`);
+
+                // Hollywood / Bollywood approximation
+                if (selections.region === 'bollywood') {
+                    params.append('regions', 'IN');
+                } else if (selections.region === 'hollywood') {
+                    params.append('regions', 'US');
+                }
+
+                const url = `${API_BASE}/list-titles/?${params.toString()}`;
+                console.log("Fetching:", url);
+
+                const res = await fetch(url, { headers: { 'X-API-Key': API_KEY } });
+                if (!res.ok) throw new Error((await res.json()).statusMessage || 'API Error');
+
+                const data = await res.json();
+
+                console.log(data);
+
+                renderResults(
+                    data.titles || [],
+                    data.total_pages || 1
+                );
+            } catch (e) {
+                console.error(e);
+                renderResults([], 1); // fallback will show mock
+            }
+        }
+
+        function renderResults(movies, totalPages) {
+            const container = document.getElementById('results-grid');
+
+            if (!movies || movies.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-20 handwritten text-2xl">No matches found.<br>Try different filters ✏️</div>`;
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            const platformNames =
+                allPlatforms
+                    .filter(p => selections.platforms.includes(p.id))
+                    .map(p => p.name)
+                    .join(', ');
+
+            container.innerHTML = movies.map((movie, idx) => {
+                const rotateClass = idx % 3 === 0 ? '-rotate-1' : idx % 3 === 1 ? 'rotate-1' : '-rotate-[0.5deg]';
+
+                return `
+            <div
+                class="card doodle-card ${rotateClass} p-6 cursor-pointer hover:bg-white hover:text-black transition-all bg-black">
+
+                <div class="flex justify-between items-start gap-3 mb-4">
+                    <h3 class="handwritten text-2xl leading-tight">
+                        ${movie.title}
+                    </h3>
+                    <span class="text-3xl shrink-0">🎞️</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 text-sm">
+                    <span class="border border-current px-3 py-1 rounded-full handwritten">
+                        📅 ${movie.year || 'N/A'}
+                    </span>
+                    <span class="border border-current px-3 py-1 rounded-full handwritten">
+                        📺 ${platformNames || 'Streaming'}
+                    </span>
+                </div>
+            </div>
+            `;
+            }).join('');
+
+            // Pagination
+            renderPagination(totalPages);
+        }
+
+        function renderPagination(totalPages) {
+            const pagContainer = document.getElementById('pagination');
+            let html = '';
+            for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+                html += `<button onclick="fetchRecommendations(${i})" class="px-5 py-3 border border-white ${i === currentPage ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}">${i}</button>`;
+            }
+            pagContainer.innerHTML = html;
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step-content')
+                .forEach(s => s.classList.add('hidden'));
+
+            document.getElementById(`step-${step}`)
+                .classList.remove('hidden');
+
+            currentStep = step;
+
+            document.querySelectorAll('.step').forEach((el, index) => {
+                el.classList.toggle('active', index + 1 === step);
+            });
+        }
+
+        function nextStep() {
+            if (currentStep < 3) {
+                showStep(currentStep + 1);
+                return;
+            }
+
+            document.querySelectorAll('.step-content')
+                .forEach(el => el.classList.add('hidden'));
+
+            document
+                .getElementById('results-screen')
+                .classList.remove('hidden');
+
+            fetchRecommendations(1);
+        }
+        function prevStep() {
+            if (currentStep > 1) showStep(currentStep - 1);
+        }
+
+        function goToStep(step) {
+            if (step <= currentStep) showStep(step);
+        }
+
+        function resetApp() {
+            selections = { genres: [], platforms: [], region: null, year: 2018 };
+            document.querySelectorAll('.chip, .platform-card').forEach(el => el.classList.remove('active'));
+            document.getElementById('year-slider').value = 2018;
+            document.getElementById('selected-year').textContent = '2018';
+            document.getElementById('results-screen').classList.add('hidden');
+            showStep(1);
+        }
+        // Init
+        window.onload = () => {
+            renderGenres();
+            renderPlatforms();
+            showStep(1);
+        };
+    </script>
+</body>
+
+</html>
