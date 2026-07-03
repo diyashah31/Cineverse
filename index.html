@@ -82,6 +82,57 @@
         .pen-cursor {
             cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2'%3E%3Cpath d='M17 3L21 7L7 21L3 17L17 3Z'/%3E%3C/svg%3E") 4 20, auto;
         }
+
+        /* Dual-handle year range slider */
+        #range-wrapper {
+            height: 36px;
+        }
+        .dual-range {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background: transparent;
+            pointer-events: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .dual-range::-webkit-slider-thumb {
+            pointer-events: auto;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2.5px solid #000000;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .dual-range::-moz-range-thumb {
+            pointer-events: auto;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2.5px solid #000000;
+            cursor: pointer;
+        }
+        .dual-range::-webkit-slider-runnable-track {
+            background: transparent;
+        }
+        .dual-range::-moz-range-track {
+            background: transparent;
+        }
+
+        /* Platform logo image */
+        .platform-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
     </style>
 </head>
 
@@ -94,114 +145,125 @@
         </filter>
     </svg>
 
-    <header class="border-b border-white/30 py-5 sticky top-0 bg-black z-50">
-        <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <span class="text-4xl">🎬</span>
-                <h1 class="text-4xl handwritten tracking-tighter">VibeStream</h1>
+    <header class="border-b border-white/30 py-4 sm:py-5 sticky top-0 bg-black z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+                <span class="text-2xl sm:text-4xl shrink-0">🎬</span>
+                <h1 class="text-xl sm:text-4xl handwritten tracking-tighter truncate">VibeStream</h1>
             </div>
             <button onclick="resetApp()"
-                class="border border-white px-6 py-3 hover:bg-white hover:text-black transition-all handwritten">New
+                class="border border-white px-3 py-2 sm:px-6 sm:py-3 hover:bg-white hover:text-black transition-all handwritten text-xs sm:text-base shrink-0 whitespace-nowrap">New
                 Vibe ✏️</button>
         </div>
     </header>
 
-    <div class="max-w-5xl mx-auto px-6 pt-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
         <!-- Progress -->
-        <div class="flex justify-between mb-12 relative">
-            <div class="absolute top-5 left-6 right-6 h-[2px] bg-white/20"></div>
+        <div class="flex justify-between mb-8 sm:mb-12 relative">
+            <div class="absolute top-[18px] sm:top-5 left-5 sm:left-6 right-5 sm:right-6 h-[2px] bg-white/20"></div>
             <div onclick="goToStep(1)"
-                class="step w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-xl cursor-pointer bg-black z-10">
+                class="step w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 border-white flex items-center justify-center text-base sm:text-xl cursor-pointer bg-black z-10">
                 1</div>
             <div onclick="goToStep(2)"
-                class="step w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-xl cursor-pointer bg-black z-10">
+                class="step w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 border-white flex items-center justify-center text-base sm:text-xl cursor-pointer bg-black z-10">
                 2</div>
             <div onclick="goToStep(3)"
-                class="step w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-xl cursor-pointer bg-black z-10">
+                class="step w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 border-white flex items-center justify-center text-base sm:text-xl cursor-pointer bg-black z-10">
                 3</div>
         </div>
 
         <!-- STEP 1: Genre -->
         <div id="step-1" class="step-content">
-            <h2 class="text-5xl handwritten mb-10">What's the vibe genre?</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="genre-chips"></div>
+            <h2 class="text-3xl sm:text-5xl handwritten mb-6 sm:mb-10">What's the vibe genre?</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4" id="genre-chips"></div>
         </div>
 
 
-        <!-- STEP 3: Platforms + Hollywood/Bollywood -->
+        <!-- STEP 2: Platforms -->
         <div id="step-2" class="step-content hidden">
-            <h2 class="text-5xl handwritten mb-8">Where do you watch?</h2>
-
-            <!-- Hollywood / Bollywood Filter -->
-            <div class="mb-8">
-                <p class="text-lg mb-4 handwritten">Region / Industry</p>
-                <div class="flex gap-4">
-                    <div onclick="toggleRegion('hollywood', this)" id="region-hollywood"
-                        class="chip doodle-border px-8 py-4 cursor-pointer text-xl">🌍 Hollywood</div>
-                    <div onclick="toggleRegion('bollywood', this)" id="region-bollywood"
-                        class="chip doodle-border px-8 py-4 cursor-pointer text-xl">🇮🇳 Bollywood</div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="platform-grid"></div>
+            <h2 class="text-3xl sm:text-5xl handwritten mb-6 sm:mb-8">Where do you watch?</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4" id="platform-grid"></div>
         </div>
 
         <!-- STEP 4: Era -->
         <div id="step-3" class="step-content hidden">
-            <h2 class="text-5xl handwritten mb-10">Which era?</h2>
-            <div class="mt-12 px-4">
-                <input type="range" id="year-slider" min="1950" max="2026" value="2018"
-                    class="w-full accent-white bg-white/10 h-1 rounded">
-                <div class="flex justify-between text-sm mt-4">
-                    <span>1950</span>
-                    <span id="selected-year" class="handwritten text-3xl">2018</span>
-                    <span>2026</span>
+            <h2 class="text-3xl sm:text-5xl handwritten mb-6 sm:mb-10">Which era?</h2>
+            <div class="mt-10 sm:mt-16 px-2 sm:px-4">
+                <div id="range-wrapper" class="relative">
+                    <div class="absolute top-[15px] left-0 right-0 h-1 bg-white/15 rounded"></div>
+                    <div id="range-fill" class="absolute top-[15px] h-1 bg-white rounded"></div>
+                    <input type="range" id="year-start" class="dual-range" min="1950" max="2026" value="2000" step="1">
+                    <input type="range" id="year-end" class="dual-range" min="1950" max="2026" value="2026" step="1">
+                </div>
+                <div class="flex justify-between items-center text-sm mt-6">
+                    <span id="year-start-label" class="handwritten text-xl sm:text-3xl">2000</span>
+                    <span class="handwritten opacity-50">to</span>
+                    <span id="year-end-label" class="handwritten text-xl sm:text-3xl">2026</span>
                 </div>
             </div>
         </div>
 
         <!-- Results -->
         <div id="results-screen" class="step-content hidden">
-            <div class="flex justify-between items-center mb-10">
-                <h2 class="text-5xl handwritten">Your Vibe Recs</h2>
-                <button onclick="resetApp()" class="border border-white px-6 py-3 hover:bg-white hover:text-black">Remix
+            <div class="flex justify-between items-center mb-6 sm:mb-8 flex-wrap gap-4">
+                <h2 class="text-3xl sm:text-5xl handwritten">Your Vibe Recs</h2>
+                <button onclick="resetApp()" class="border border-white px-4 py-2 sm:px-6 sm:py-3 hover:bg-white hover:text-black text-sm sm:text-base">Remix
                     ✏️</button>
             </div>
 
-            <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div class="flex flex-wrap gap-4 sm:gap-6 items-center mb-8 sm:mb-10">
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <label class="handwritten text-base sm:text-lg">Sort:</label>
+                    <select id="sort-select" onchange="onSortChange()"
+                        class="doodle-border bg-black text-white px-3 py-2 sm:px-4 sm:py-2 handwritten cursor-pointer text-sm sm:text-base">
+                        <option value="release_date_desc">Latest First</option>
+                        <option value="release_date_asc">Oldest First</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <label class="handwritten text-base sm:text-lg">Platform:</label>
+                    <select id="platform-filter-select" onchange="onPlatformFilterChange()"
+                        class="doodle-border bg-black text-white px-3 py-2 sm:px-4 sm:py-2 handwritten cursor-pointer text-sm sm:text-base">
+                        <option value="">All Selected</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="results-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"></div>
 
             <!-- Pagination -->
-            <div id="pagination" class="flex justify-center gap-4 mt-12"></div>
+            <div id="pagination" class="flex justify-center flex-wrap gap-3 sm:gap-4 mt-10 sm:mt-12"></div>
         </div>
     </div>
 
     <!-- Modal -->
     <div id="detail-modal" class="fixed inset-0 bg-black/95 hidden flex items-center justify-center z-[100] p-4">
-        <div id="modal-content" class="max-w-2xl w-full doodle-border bg-black p-8 max-h-[90vh] overflow-auto"></div>
+        <div id="modal-content" class="max-w-2xl w-full doodle-border bg-black p-5 sm:p-8 max-h-[90vh] overflow-auto"></div>
     </div>
     <!-- Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 bg-black border-t border-white/20 p-4 z-50">
-        <div class="max-w-5xl mx-auto flex justify-between">
+    <div id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-black border-t border-white/20 p-3 sm:p-4 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between gap-3">
             <button onclick="prevStep()"
-                class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-black transition">
+                class="border border-white px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg hover:bg-white hover:text-black transition text-sm sm:text-base flex-1 sm:flex-none">
                 ← Back
             </button>
 
             <button onclick="nextStep()"
-                class="border border-white px-6 py-3 rounded-lg bg-white text-black hover:scale-105 transition">
+                class="border border-white px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg bg-white text-black hover:scale-105 transition text-sm sm:text-base flex-1 sm:flex-none">
                 Next →
             </button>
         </div>
     </div>
     <script>
-        const API_KEY = "jBN0XIZe32R5UsFJyGaIrJJBBKmFnIIRVQX56GRT"; // ← Replace with your key
+        const API_KEY = "jBN0XIZe32R5UsFJyGaIrJJBBKmFnIIRVQX56GRT";
         const API_BASE = "https://api.watchmode.com/v1";
 
         let currentStep = 1;
         let currentPage = 1;
         const PAGE_SIZE = 9;
 
-        let selections = { genres: [], platforms: [], region: null, year: 2018 };
+        let selections = { genres: [], platforms: [], yearStart: 2000, yearEnd: 2026, sortBy: 'release_date_desc' };
+        let platformFilterOverride = null; // temporary single-platform filter on results screen
 
         const allGenres = [
             { id: 1, name: "Action" }, { id: 39, name: "Action & Adventure" },
@@ -225,18 +287,19 @@
             { id: 19, name: "Western" }
         ];
 
+        // logo: filename expected inside static/platforms/ (see README note in code)
         const allPlatforms = [
-            { id: 203, name: "Netflix" },
-            { id: 157, name: "Prime Video" },
-            { id: 387, name: "Disney+ Hotstar" },
-            { id: 371, name: "JioCinema" },
-            { id: 444, name: "Sony LIV" },
-            { id: 232, name: "ZEE5" },
-            { id: 349, name: "Apple TV+" },
-            { id: 445, name: "Discovery+" },
-            { id: 63, name: "Hulu" },
-            { id: 80, name: "Max" },
-            { id: 26, name: "Peacock" }
+            { id: 203, name: "Netflix", logo: "netflix.png" },
+            { id: 157, name: "Prime Video", logo: "primevideo.png" },
+            { id: 387, name: "Disney+ Hotstar", logo: "hotstar.png" },
+            { id: 371, name: "JioCinema", logo: "jiocinema.png" },
+            { id: 444, name: "Sony LIV", logo: "sonyliv.png" },
+            { id: 232, name: "ZEE5", logo: "zee5.png" },
+            { id: 349, name: "Apple TV+", logo: "appletv.png" },
+            { id: 445, name: "Discovery+", logo: "discoveryplus.png" },
+            { id: 63, name: "Hulu", logo: "hulu.png" },
+            { id: 80, name: "Max", logo: "max.png" },
+            { id: 26, name: "Peacock", logo: "peacock.png" }
         ];
 
 
@@ -253,8 +316,9 @@
         function renderPlatforms() {
             const container = document.getElementById('platform-grid');
             container.innerHTML = allPlatforms.map(p => `
-                <div onclick="togglePlatform(${p.id}, this)" class="platform-card chip doodle-border p-6 text-center cursor-pointer hover:rotate-2">
-                    <div class="handwritten text-xl">${p.name}</div>
+                <div onclick="togglePlatform(${p.id}, this)" class="platform-card chip doodle-border p-5 text-center cursor-pointer hover:rotate-2 flex flex-col items-center gap-2">
+                    <img src="static/platforms/${p.logo}" class="platform-logo" alt="${p.name}" onerror="this.style.display='none'">
+                    <div class="handwritten text-base">${p.name}</div>
                 </div>
             `).join('');
         }
@@ -271,16 +335,40 @@
             else selections.platforms.push(id);
         }
 
-        function toggleRegion(type, el) {
-            document.querySelectorAll('#step-2 .chip').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-            selections.region = type;
+        // Dual-handle year range slider
+        const yearStartInput = document.getElementById('year-start');
+        const yearEndInput = document.getElementById('year-end');
+        const rangeFill = document.getElementById('range-fill');
+        const MIN_YEAR = 1950, MAX_YEAR = 2026;
+
+        function updateRangeUI() {
+            let start = parseInt(yearStartInput.value);
+            let end = parseInt(yearEndInput.value);
+
+            if (start > end - 1) { // keep a 1-year minimum gap, don't let handles cross
+                start = end - 1;
+                yearStartInput.value = start;
+            }
+
+            selections.yearStart = start;
+            selections.yearEnd = end;
+
+            document.getElementById('year-start-label').textContent = start;
+            document.getElementById('year-end-label').textContent = end;
+
+            const pctStart = ((start - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
+            const pctEnd = ((end - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
+            rangeFill.style.left = pctStart + '%';
+            rangeFill.style.width = (pctEnd - pctStart) + '%';
+
+            // bring whichever handle is closer to the front so it stays draggable
+            yearStartInput.style.zIndex = start > end - 5 ? 5 : 3;
+            yearEndInput.style.zIndex = 4;
         }
 
-        document.getElementById('year-slider').addEventListener('input', (e) => {
-            selections.year = e.target.value;
-            document.getElementById('selected-year').textContent = e.target.value;
-        });
+        yearStartInput.addEventListener('input', updateRangeUI);
+        yearEndInput.addEventListener('input', updateRangeUI);
+        updateRangeUI();
 
         async function fetchRecommendations(page = 1) {
             currentPage = page;
@@ -288,26 +376,23 @@
             container.innerHTML = `<div class="col-span-full text-center py-20 handwritten text-3xl">sketching your recs...</div>`;
 
             try {
+                // If the user picked a single platform in the results-page dropdown, use just that one
+                const sourceIds = platformFilterOverride
+                    ? [parseInt(platformFilterOverride)]
+                    : (selections.platforms.length ? selections.platforms : [203]);
+
                 const params = new URLSearchParams({
-                    sourceIds: selections.platforms.length ? selections.platforms.join(',') : '203',
+                    source_ids: sourceIds.join(','),
                     types: 'movie,tv_series',
                     limit: PAGE_SIZE,
-                    sort_by: 'relevance_desc',
+                    sort_by: selections.sortBy || 'release_date_desc',
                     page: page
                 });
 
                 if (selections.genres.length) params.append('genres', selections.genres.join(','));
 
-                const startYear = selections.year;
-                params.append('releaseDateStart', `${startYear}0101`);
-                params.append('releaseDateEnd', `${parseInt(startYear) + 6}1231`);
-
-                // Hollywood / Bollywood approximation
-                if (selections.region === 'bollywood') {
-                    params.append('regions', 'IN');
-                } else if (selections.region === 'hollywood') {
-                    params.append('regions', 'US');
-                }
+                params.append('releaseDateStart', `${selections.yearStart}0101`);
+                params.append('releaseDateEnd', `${selections.yearEnd}1231`);
 
                 const url = `${API_BASE}/list-titles/?${params.toString()}`;
                 console.log("Fetching:", url);
@@ -319,8 +404,18 @@
 
                 console.log(data);
 
+                let titles = data.titles || [];
+
+                // Watchmode's sort_by is unreliable for release-date ordering,
+                // so we sort the returned page ourselves to guarantee correct order
+                if (selections.sortBy === 'release_date_desc') {
+                    titles = [...titles].sort((a, b) => (b.year || 0) - (a.year || 0));
+                } else if (selections.sortBy === 'release_date_asc') {
+                    titles = [...titles].sort((a, b) => (a.year || 0) - (b.year || 0));
+                }
+
                 renderResults(
-                    data.titles || [],
+                    titles,
                     data.total_pages || 1
                 );
             } catch (e) {
@@ -338,8 +433,9 @@
                 return;
             }
 
-            const platformNames =
-                allPlatforms
+            const platformNames = platformFilterOverride
+                ? (allPlatforms.find(p => p.id === parseInt(platformFilterOverride))?.name || 'Streaming')
+                : allPlatforms
                     .filter(p => selections.platforms.includes(p.id))
                     .map(p => p.name)
                     .join(', ');
@@ -378,7 +474,7 @@
             const pagContainer = document.getElementById('pagination');
             let html = '';
             for (let i = 1; i <= Math.min(totalPages, 5); i++) {
-                html += `<button onclick="fetchRecommendations(${i})" class="px-5 py-3 border border-white ${i === currentPage ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}">${i}</button>`;
+                html += `<button onclick="fetchRecommendations(${i})" class="px-4 py-2 sm:px-5 sm:py-3 border border-white text-sm sm:text-base ${i === currentPage ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}">${i}</button>`;
             }
             pagContainer.innerHTML = html;
         }
@@ -399,6 +495,9 @@
             document.querySelectorAll('.step').forEach((el, index) => {
                 el.classList.toggle('active', index + 1 === step);
             });
+
+            // We're back in the wizard, so Back/Next should be visible again
+            document.getElementById('bottom-nav').classList.remove('hidden');
         }
 
         function nextStep() {
@@ -414,6 +513,10 @@
                 .getElementById('results-screen')
                 .classList.remove('hidden');
 
+            // No Back/Next once results are showing — Remix/New Vibe replace that role
+            document.getElementById('bottom-nav').classList.add('hidden');
+
+            populatePlatformFilter();
             fetchRecommendations(1);
         }
         function prevStep() {
@@ -425,13 +528,40 @@
         }
 
         function resetApp() {
-            selections = { genres: [], platforms: [], region: null, year: 2018 };
+            selections = { genres: [], platforms: [], yearStart: 2000, yearEnd: 2026, sortBy: 'release_date_desc' };
+            platformFilterOverride = null;
             document.querySelectorAll('.chip, .platform-card').forEach(el => el.classList.remove('active'));
-            document.getElementById('year-slider').value = 2018;
-            document.getElementById('selected-year').textContent = '2018';
+            document.getElementById('year-start').value = 2000;
+            document.getElementById('year-end').value = 2026;
+            updateRangeUI();
             document.getElementById('results-screen').classList.add('hidden');
+            renderPlatforms();
             showStep(1);
         }
+
+        function populatePlatformFilter() {
+            const select = document.getElementById('platform-filter-select');
+            const selected = allPlatforms.filter(p => selections.platforms.includes(p.id));
+
+            select.innerHTML = '<option value="">All Selected</option>' +
+                selected.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+
+            platformFilterOverride = null;
+            select.value = '';
+        }
+
+        function onPlatformFilterChange() {
+            const select = document.getElementById('platform-filter-select');
+            platformFilterOverride = select.value || null;
+            fetchRecommendations(1);
+        }
+
+        function onSortChange() {
+            const select = document.getElementById('sort-select');
+            selections.sortBy = select.value;
+            fetchRecommendations(1);
+        }
+
         // Init
         window.onload = () => {
             renderGenres();
